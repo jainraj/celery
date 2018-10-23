@@ -319,6 +319,8 @@ class Request(object):
 
     def on_retry(self, exc_info):
         """Handler called if the task should be retried."""
+        print('RajJain: In celery.worker.request on_retry')
+        print('RajJain: acks_late is {}'.format(self.task.acks_late))
         if self.task.acks_late:
             self.acknowledge()
 
