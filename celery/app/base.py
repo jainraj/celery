@@ -334,7 +334,6 @@ class Celery(object):
                   router=None, result_cls=None, expires=None,
                   publisher=None, link=None, link_error=None,
                   add_to_parent=True, reply_to=None, **options):
-        print('RajJain: In send_task')
         task_id = task_id or uuid()
         producer = producer or publisher  # XXX compat
         router = router or self.amqp.router
@@ -345,7 +344,6 @@ class Celery(object):
             ), stacklevel=2)
         options = router.route(options, name, args, kwargs)
         if connection:
-            print('RajJain: Connection', connection)
             producer = self.amqp.TaskProducer(connection)
         with self.producer_or_acquire(producer) as P:
             self.backend.on_task_call(P, task_id)

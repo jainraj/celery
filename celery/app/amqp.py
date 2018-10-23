@@ -226,7 +226,6 @@ class TaskProducer(Producer):
                      sent_receivers=signals.task_sent.receivers,
                      **kwargs):
         """Send task message."""
-        print('RajJain: In publish_task')
         retry = self.retry if retry is None else retry
         headers = {} if headers is None else headers
 
@@ -299,7 +298,6 @@ class TaskProducer(Producer):
             )
 
         print('RajJain: About to call self.publish')
-        print('RajJain: body is {}'.format(body))
         self.publish(
             body,
             exchange=exchange, routing_key=routing_key,
