@@ -299,6 +299,7 @@ class TaskProducer(Producer):
             )
 
         print('RajJain: About to call self.publish')
+        print('RajJain: body is {}'.format(body))
         self.publish(
             body,
             exchange=exchange, routing_key=routing_key,
