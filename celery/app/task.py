@@ -567,6 +567,7 @@ class Task(object):
         if self.__self__ is not None:
             args = args if isinstance(args, tuple) else tuple(args or ())
             args = (self.__self__, ) + args
+        print('RajJain: In apply_async: about to send_task')
         return app.send_task(
             self.name, args, kwargs, task_id=task_id, producer=producer,
             link=link, link_error=link_error, result_cls=self.AsyncResult,
@@ -658,6 +659,7 @@ class Task(object):
         to convey that the rest of the block will not be executed.
 
         """
+        print('RajJain: In retry')
         request = self.request
         retries = request.retries + 1
         max_retries = self.max_retries if max_retries is None else max_retries
@@ -697,7 +699,9 @@ class Task(object):
             return ret
 
         try:
+            print('RajJain: In Retry About to apply_async')
             S.apply_async()
+            print('RajJain: In Retry apply_async done')
         except Exception as exc:
             raise Reject(exc, requeue=False)
         if throw:
