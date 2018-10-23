@@ -594,6 +594,12 @@ class Task(object):
         options.update(
             {'queue': queue} if queue else (request.delivery_info or {})
         )
+
+        print('RajJain: args are {}'.format(args))
+        print('RajJain: kwargs are {}'.format(kwargs))
+        print('RajJain: options are {}'.format(options))
+        print('RajJain: extra_options are {}'.format(extra_options))
+
         return self.subtask(args, kwargs, options, type=self, **extra_options)
 
     def retry(self, args=None, kwargs=None, exc=None, throw=True,
